@@ -4,6 +4,10 @@
 echo "Updating system..."
 sudo pacman -Syu --noconfirm
 
+# Remove any conflicting packages
+echo "Removing conflicting VirtualBox DKMS package..."
+sudo pacman -R virtualbox virtualbox-host-dkms --noconfirm
+
 # Install VirtualBox and dependencies
 echo "Installing VirtualBox..."
 sudo pacman -S --noconfirm virtualbox
@@ -24,7 +28,14 @@ echo "Loading kernel modules..."
 sudo modprobe vboxdrv
 sudo modprobe vboxnetadp
 sudo modprobe vboxnetflt
-sudo modprobe vboxpci
+
+# Only load vboxpci if PCI passthrough is required
+if [[ -n $(lspci) ]]; then
+    echo "PCI passthrough detected, loading vboxpci module..."
+    sudo modprobe vboxpci || echo "vboxpci module not found, skipping."
+else
+    echo "PCI passthrough not needed, skipping vboxpci module."
+fi
 
 # Add user to vboxusers group
 echo "Adding user to vboxusers group..."
