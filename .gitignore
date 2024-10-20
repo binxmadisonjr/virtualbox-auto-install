@@ -1,0 +1,53 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore log files and temp files
+*.log
+*.tmp
+*.swp
+*.swo
+*.pid
+*.seed
+
+# Ignore VirtualBox files
+*.vbox
+*.vbox-prev
+*.vdi
+*.vmdk
+*.vhd
+*.vhdx
+*.vagrant
+VBox.log*
+VBoxSVC.log*
+
+# Ignore compiled binaries
+*.out
+*.o
+*.so
+*.a
+*.exe
+
+# Ignore archives
+*.zip
+*.tar.gz
+*.tar.bz2
+*.7z
+
+# Ignore package manager directories
+node_modules/
+package-lock.json
+
+# Ignore shell history and system files
+.bash_history
+.zsh_history
+.history
+
+# Ignore IDE and editor-specific files
+.idea/
+.vscode/
+*.code-workspace
+
+# Ignore backups
+*~
+*.bak
